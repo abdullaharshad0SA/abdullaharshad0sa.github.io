@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Abdullah Arshad | Senior Data Architect</title>
+<style>
+  :root{--bg:#0d0d0d;--bg2:#111;--card:#1a1a1a;--accent:#4f8ef7;--accent2:#7b5ea7;--text:#e0e0e0;--muted:#888;--border:#222}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;line-height:1.6}
+
+  nav{position:fixed;top:0;width:100%;background:rgba(13,13,13,.92);backdrop-filter:blur(10px);z-index:100;border-bottom:1px solid var(--border);padding:0 2rem}
+  .nav-inner{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;height:60px}
+  .nav-logo{font-weight:700;font-size:1.1rem;color:var(--accent);text-decoration:none}
+  .nav-links{display:flex;gap:2rem;list-style:none}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:.9rem;transition:color .2s}
+  .nav-links a:hover{color:var(--accent)}
+
+  #home{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:80px 2rem 2rem;background:radial-gradient(ellipse at 20% 50%,rgba(79,142,247,.08) 0%,transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(123,94,167,.08) 0%,transparent 60%)}
+  .hero-inner{max-width:900px;width:100%;display:flex;align-items:center;gap:4rem;flex-wrap:wrap}
+  .hero-text{flex:1;min-width:260px}
+  .hero-greeting{color:var(--accent);font-size:.95rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:.5rem}
+  .hero-name{font-size:clamp(2rem,5vw,3.5rem);font-weight:800;line-height:1.1;margin-bottom:1rem}
+  .hero-name span{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+  .hero-roles{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem}
+  .role-badge{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:.25rem .85rem;font-size:.8rem;color:var(--muted)}
+  .hero-summary{color:var(--muted);font-size:.95rem;max-width:520px;margin-bottom:2rem;line-height:1.7}
+  .hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+  .btn{padding:.7rem 1.6rem;border-radius:8px;font-size:.9rem;font-weight:600;text-decoration:none;cursor:pointer;transition:all .2s;border:none;display:inline-flex;align-items:center;gap:.5rem}
+  .btn-primary{background:var(--accent);color:#fff}
+  .btn-primary:hover{background:#3a7aed;transform:translateY(-2px)}
+  .btn-outline{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+  .btn-outline:hover{background:rgba(79,142,247,.1);transform:translateY(-2px)}
+  .btn-gh{background:#1a6ff4;color:#fff;font-size:.8rem;padding:.45rem 1rem;border-radius:6px;text-decoration:none;display:inline-flex;align-items:center;gap:.4rem;transition:all .2s;font-weight:600}
+  .btn-gh:hover{background:#1558c9;transform:translateY(-2px)}
+  .hero-socials{display:flex;gap:1.25rem;margin-top:1.5rem;flex-wrap:wrap;align-items:center}
+  .hero-socials a{color:#fff;text-decoration:none;font-size:.85rem;transition:opacity .2s;display:flex;align-items:center;gap:.4rem}
+  .hero-socials a:hover{opacity:.7}
+  .hero-avatar{width:220px;height:220px;border-radius:50%;overflow:hidden;flex-shrink:0;box-shadow:0 0 60px rgba(79,142,247,.25);border:3px solid rgba(79,142,247,.3)}
+  .hero-avatar img{width:100%;height:100%;object-fit:cover;object-position:center top}
+
+  section{padding:80px 2rem}
+  .section-inner{max-width:1100px;margin:auto}
+  .section-label{color:var(--accent);font-size:.8rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:.5rem}
+  .section-title{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;margin-bottom:2.5rem}
+
+  .founding-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,rgba(79,142,247,.15),rgba(123,94,167,.15));border:1px solid rgba(79,142,247,.3);border-radius:8px;padding:.5rem 1rem;font-size:.82rem;color:var(--text);margin-bottom:1.25rem}
+  .founding-badge strong{color:var(--accent)}
+
+  #about{background:var(--bg2)}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+  @media(max-width:700px){.about-grid{grid-template-columns:1fr}}
+  .about-bio{color:var(--muted);line-height:1.8;font-size:.95rem}
+  .skills-group{margin-bottom:1.5rem}
+  .skills-group h4{font-size:.85rem;color:var(--accent);letter-spacing:1px;text-transform:uppercase;margin-bottom:.75rem}
+  .skills-tags{display:flex;flex-wrap:wrap;gap:.5rem}
+  .skill-tag{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.25rem .7rem;font-size:.8rem;color:var(--text);transition:border-color .2s}
+  .skill-tag:hover{border-color:var(--accent)}
+
+  #companies{background:var(--bg);padding:50px 2rem}
+  .companies-inner{max-width:1100px;margin:auto;text-align:center}
+  .company-logos{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:2.5rem;margin-top:1.5rem}
+  .company-logo-item{border-radius:10px;display:flex;align-items:center;justify-content:center;height:64px;min-width:140px;padding:.75rem 1.5rem}
+  .company-logo-item img{display:block;max-width:100%}
+
+  #experience{background:var(--bg2)}
+  .timeline{display:flex;flex-direction:column;gap:1.5rem}
+  .job-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem 2rem;transition:border-color .2s}
+  .job-card:hover{border-color:var(--accent)}
+  .job-card.featured{border-color:rgba(79,142,247,.3)}
+  .job-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:.5rem;margin-bottom:.5rem}
+  .job-title{font-size:1.05rem;font-weight:700}
+  .job-company{color:var(--accent);font-size:.9rem;margin-bottom:.15rem}
+  .job-date{color:var(--muted);font-size:.8rem;white-space:nowrap}
+  .job-context{color:var(--text);font-size:.85rem;margin-bottom:.75rem;opacity:.8}
+  .job-context strong{color:var(--accent)}
+  .job-bullets{list-style:none;padding:0}
+  .job-bullets li{color:var(--muted);font-size:.88rem;padding:.25rem 0 .25rem 1.2rem;position:relative;line-height:1.6}
+  .job-bullets li::before{content:'▸';position:absolute;left:0;color:var(--accent)}
+  .job-bullets li.highlight{color:var(--text)}
+
+  #projects{background:var(--bg)}
+  .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
+  .project-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.75rem;transition:all .2s;position:relative;overflow:hidden;display:flex;flex-direction:column}
+  .project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+  .project-card:hover{transform:translateY(-4px);border-color:var(--accent)}
+  .project-icon{font-size:2rem;margin-bottom:1rem}
+  .project-title{font-size:1rem;font-weight:700;margin-bottom:.5rem}
+  .project-role{color:var(--accent);font-size:.8rem;margin-bottom:.75rem}
+  .project-desc{color:var(--muted);font-size:.85rem;line-height:1.7;flex:1}
+  .project-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
+  .project-tag{background:rgba(79,142,247,.1);border-radius:4px;padding:.15rem .55rem;font-size:.75rem;color:var(--accent)}
+  .project-footer{margin-top:1.25rem}
+
+  #education{background:var(--bg2)}
+  .edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+  .edu-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;display:flex;gap:1rem;align-items:flex-start}
+  .edu-logo{width:56px;height:56px;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .edu-logo img{display:block;max-width:100%}
+  .edu-school{font-weight:700;font-size:.95rem;margin-bottom:.25rem}
+  .edu-degree{color:var(--muted);font-size:.85rem}
+  .edu-year{color:var(--accent);font-size:.8rem;margin-top:.25rem}
+
+  #certifications{background:var(--bg)}
+  .cert-grid{display:flex;flex-wrap:wrap;gap:1rem}
+  .cert-pill{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:.75rem 1.25rem;font-size:.85rem;display:flex;align-items:center;gap:.6rem;color:var(--text);text-decoration:none;transition:all .2s}
+  .cert-pill:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .cert-pill span{color:var(--accent)}
+
+  #contact{background:var(--bg2)}
+  .contact-inner{max-width:600px;margin:auto;text-align:center}
+  .contact-inner > p{color:var(--muted);margin-bottom:2rem;font-size:.95rem}
+  .contact-links{display:flex;justify-content:center;flex-wrap:wrap;gap:1.5rem;margin-bottom:2.5rem;align-items:center}
+  .contact-link{color:#fff;text-decoration:none;display:flex;align-items:center;gap:.5rem;font-size:.9rem;transition:opacity .2s}
+  .contact-link:hover{opacity:.7}
+  .contact-form{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:2rem;text-align:left}
+  .form-note{font-size:.78rem;color:var(--muted);margin-bottom:1.25rem;text-align:center}
+  .form-group{margin-bottom:1.25rem}
+  .form-group label{display:block;font-size:.8rem;color:var(--muted);margin-bottom:.4rem;text-transform:uppercase;letter-spacing:1px}
+  .form-group input,.form-group textarea{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:.75rem 1rem;color:var(--text);font-size:.9rem;font-family:inherit;transition:border-color .2s;resize:vertical}
+  .form-group input:focus,.form-group textarea:focus{outline:none;border-color:var(--accent)}
+  .form-group textarea{min-height:120px}
+
+  footer{background:var(--bg);border-top:1px solid var(--border);padding:1.5rem 2rem;text-align:center;color:var(--muted);font-size:.8rem}
+
+  @media(max-width:600px){
+    .hero-inner{flex-direction:column-reverse;text-align:center}
+    .hero-roles,.hero-btns,.hero-socials{justify-content:center}
+    .hero-avatar{width:150px;height:150px}
+    .job-header{flex-direction:column}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#home">AA</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section id="home">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <p class="hero-greeting">Hello, I am</p>
+      <h1 class="hero-name"><span>Abdullah Arshad</span></h1>
+      <div class="hero-roles">
+        <span class="role-badge">Senior Data Architect</span>
+        <span class="role-badge">Analytics Engineering</span>
+        <span class="role-badge">Data Modelling</span>
+        <span class="role-badge">Data Infrastructure</span>
+      </div>
+      <p class="hero-summary">Senior data professional with 5+ years of experience building analytics infrastructure, data pipelines, and scalable reporting systems in ad tech. Strong background in SQL, Python, R, Snowflake, BigQuery, dbt, AWS, and analytics workflow automation, with hands-on experience supporting dependable data systems used by leadership, account teams, and business partners.</p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn btn-primary">My Projects</a>
+        <a href="#contact" class="btn btn-outline">Contact Me</a>
+      </div>
+      <div class="hero-socials">
+        <a href="https://linkedin.com/in/abdullah-arshad" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M20.45 20.45h-3.554v-5.57c0-1.328-.027-3.037-1.852-3.037-1.854 0-2.137 1.446-2.137 2.94v5.667H9.353V9h3.414v1.561h.048c.476-.9 1.637-1.85 3.37-1.85 3.602 0 4.267 2.37 4.267 5.455v6.284zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/abdullaharshad0SA" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          GitHub
+        </a>
+        <a href="mailto:abdullah1818@gmail.com">✉️ Email</a>
+      </div>
+    </div>
+    <div class="hero-avatar">
+      <img src="https://media.licdn.com/dms/image/v2/D5603AQE2bLLftRYFqA/profile-displayphoto-scale_400_400/B56ZlJ9CCmI8Ag-/0/1757882361651?e=1777507200&v=beta&t=ApOycbNRLgEUAoZKD_ssnPxykDPnnAcieUA4dALdUbc"
+           alt="Abdullah Arshad"
+           onerror="this.src='https://ui-avatars.com/api/?name=Abdullah+Arshad&size=400&background=1a2a4a&color=4f8ef7&bold=true'"/>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-inner">
+    <p class="section-label">Who I Am</p>
+    <h2 class="section-title">About Me</h2>
+    <div class="about-grid">
+      <div>
+        <div class="founding-badge">
+          🏗️ <span>Joined StackAdapt as one of <strong>fewer than 10 people</strong> on the data team. The team is now <strong>45+</strong>.</span>
+        </div>
+        <p class="about-bio">
+          I'm Abdullah Arshad, a Senior Data Architect based in Toronto. I joined StackAdapt when the data and analytics function was still being built out, and in those early stages I helped establish foundational reporting and analytics infrastructure that the team continued to scale on. My work has focused on building dependable data flows, reporting-ready datasets, transformation logic, and governance standards that help teams work from more stable and trusted data.<br><br>
+          My experience sits between data architecture and analytics engineering. I build systems that make data easier to deliver, understand, and use across the business, with hands-on work in SQL, Python, R, Snowflake, BigQuery, dbt, AWS, Grafana, workflow automation, and documentation. I’m especially interested in roles where strong data modelling, reliable pipelines, and stakeholder enablement all matter.
+        </p>
+      </div>
+      <div>
+        <div class="skills-group">
+          <h4>Data & Engineering</h4>
+          <div class="skills-tags">
+            <span class="skill-tag">SQL</span><span class="skill-tag">Python</span><span class="skill-tag">R</span>
+            <span class="skill-tag">dbt</span><span class="skill-tag">ETL / ELT</span><span class="skill-tag">Airflow</span>
+            <span class="skill-tag">Kestra</span><span class="skill-tag">Data Modelling</span><span class="skill-tag">Data Quality</span>
+          </div>
+        </div>
+        <div class="skills-group">
+          <h4>Cloud & Platforms</h4>
+          <div class="skills-tags">
+            <span class="skill-tag">Snowflake</span><span class="skill-tag">BigQuery</span><span class="skill-tag">AWS</span>
+            <span class="skill-tag">Redshift</span><span class="skill-tag">MySQL</span><span class="skill-tag">GitHub</span>
+            <span class="skill-tag">Grafana</span>
+          </div>
+        </div>
+        <div class="skills-group">
+          <h4>Analytics & BI</h4>
+          <div class="skills-tags">
+            <span class="skill-tag">Tableau</span><span class="skill-tag">Looker</span><span class="skill-tag">Power BI</span>
+            <span class="skill-tag">ThoughtSpot</span><span class="skill-tag">KPI Development</span><span class="skill-tag">A/B Testing</span>
+          </div>
+        </div>
+        <div class="skills-group">
+          <h4>ML & AI</h4>
+          <div class="skills-tags">
+            <span class="skill-tag">Random Forest</span><span class="skill-tag">XGBoost</span>
+            <span class="skill-tag">Clustering</span><span class="skill-tag">Churn Modelling</span><span class="skill-tag">NLP</span>
+          </div>
+        </div>
+        <div class="skills-group">
+          <h4>Practices</h4>
+          <div class="skills-tags">
+            <span class="skill-tag">Workflow Orchestration</span><span class="skill-tag">SOP Development</span>
+            <span class="skill-tag">GDPR / CCPA</span><span class="skill-tag">Stakeholder Reporting</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="companies">
+  <div class="companies-inner">
+    <p class="section-label" style="text-align:center">Where I've Worked & Studied</p>
+    <div class="company-logos">
+      <div class="company-logo-item" style="background:#fff;padding:.5rem 1.25rem;border-radius:10px">
+        <img src="https://d343x6qscsp61h.cloudfront.net/sites/2/20240513164421/Say-Hello-to-StackAdapts-New-Logo.webp"
+             alt="StackAdapt" style="height:36px;width:auto;object-fit:contain"
+             onerror="this.outerHTML='<span style=\\'color:#1557FF;font-weight:700;font-size:1.1rem\\'>StackAdapt</span>'"/>
+      </div>
+
+      <div class="company-logo-item" style="background:#fff;padding:.5rem 1.25rem;border-radius:10px">
+        <img src="https://www.iit.edu/themes/iit/assets/img/illinois-tech-red.svg"
+             alt="Illinois Institute of Technology" style="height:40px;width:auto;object-fit:contain"
+             onerror="this.outerHTML='<span style=\\'color:#CC0000;font-weight:900;font-size:1rem\\'>Illinois Tech</span>'"/>
+      </div>
+
+      <div class="company-logo-item" style="background:#fff;padding:.5rem 1.25rem;border-radius:10px">
+        <img src="https://www.torontomu.ca/etc.clientlibs/ryecms/static/clientlib-site/resources/images/tmu_logo.svg"
+             alt="Toronto Metropolitan University" style="height:42px;width:auto;object-fit:contain"
+             onerror="this.outerHTML='<span style=\\'color:#003DA5;font-weight:900;font-size:1rem\\'>TMU</span>'"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="section-inner">
+    <p class="section-label">Career</p>
+    <h2 class="section-title">Experience</h2>
+    <div class="timeline">
+
+      <div class="job-card featured">
+        <div class="job-header">
+          <div><div class="job-title">Senior Data Architect</div><div class="job-company">StackAdapt · Toronto</div></div>
+          <div class="job-date">Jan 2025 – Present</div>
+        </div>
+        <ul class="job-bullets">
+          <li class="highlight">Automated SQL and Python pipelines to ingest and process structured and unstructured data from multiple sources, improving the reliability of datasets used in client and leadership decision-making.</li>
+          <li>Built and refined reporting-ready datasets and transformation logic that helped downstream dashboards, stakeholder reporting, and analytics workflows stay more consistent as business needs evolved.</li>
+          <li>Collaborated with Data Engineering on ETL and QA workflows to improve pipeline stability and strengthen trust in analytics used by stakeholders.</li>
+          <li>Designed role-based security policies across Snowflake and MySQL and authored SOPs and training documentation to help standardize analytics practices and support onboarding.</li>
+          <li>Developed an automated script to scan GitHub repositories for PII, helping support GDPR and CCPA compliance more consistently.</li>
+          <li>Designed and deployed 2,000+ multi-dimensional dashboards surfacing campaign performance across funnel stages and against industry benchmarks, giving executives and Account Managers scalable visibility into performance gaps and optimization opportunities.</li>
+          <li>Designed a churn risk model combining Gong transcripts, campaign metrics, spend patterns, and vertical benchmarks to proactively flag at-risk accounts. Delivered insights to Client Services leadership and Account Manager teams, helping prioritize retention efforts.</li>
+          <li>Partnered with Product, Marketing, and Sales to deliver market and competitor insights that shaped go-to-market strategy and product positioning.</li>
+        </ul>
+      </div>
+
+      <div class="job-card featured">
+        <div class="job-header">
+          <div><div class="job-title">Data Architect II</div><div class="job-company">StackAdapt · Toronto</div></div>
+          <div class="job-date">May 2023 – Jan 2025</div>
+        </div>
+        <ul class="job-bullets">
+          <li class="highlight">Built and maintained cross-system data flows across AWS services, Snowflake, BigQuery, cloud storage, and Python/R workflows to support dependable reporting delivery and downstream analytics use.</li>
+          <li>Contributed to the team’s transition from AWS-based reporting workflows into a more scalable Snowflake-centred analytics environment, helping improve maintainability, reliability, and downstream reporting consistency.</li>
+          <li>Led adoption of critical analytics infrastructure connections and integrations across job scheduling, storage, delivery, and workflow automation, improving the scale and reliability of reporting operations.</li>
+          <li>Improved recurring reporting operations through Crontab and Nomad, reducing manual dependency in scheduled workflows.</li>
+        </ul>
+      </div>
+
+      <div class="job-card">
+        <div class="job-header">
+          <div><div class="job-title">Reporting Developer</div><div class="job-company">StackAdapt · Toronto</div></div>
+          <div class="job-date">Aug 2021 – May 2023</div>
+        </div>
+        <p class="job-context">Joined as part of a <strong>founding analytics team of fewer than 10 people</strong>. Helped establish the data foundations, dbt frameworks, and reporting infrastructure the team continues to build on.</p>
+        <ul class="job-bullets">
+          <li>Built and maintained SQL, Python, and Tableau reporting pipelines for internal and client-facing use.</li>
+          <li>Supported data delivery and reporting workflows in an AWS-based environment, improving consistency and reducing manual effort.</li>
+          <li>Supported KPI analysis and A/B testing for campaign optimization and stakeholder reporting.</li>
+        </ul>
+      </div>
+
+      <div class="job-card">
+        <div class="job-header">
+          <div><div class="job-title">Reporting Specialist</div><div class="job-company">StackAdapt · Toronto</div></div>
+          <div class="job-date">Jun 2021 – Aug 2021</div>
+        </div>
+        <ul class="job-bullets">
+          <li>Promoted to Reporting Developer within 2 months for delivering strong workflow automation and efficiency improvements.</li>
+          <li>Built and delivered interactive Tableau dashboards for clients and internal teams.</li>
+          <li>Queried databases using SQL to generate actionable insights for stakeholders.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="section-inner">
+    <p class="section-label">Work</p>
+    <h2 class="section-title">Projects</h2>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-icon">❄️</div>
+        <div class="project-title">AWS to Snowflake Migration</div>
+        <div class="project-role">Data Infrastructure</div>
+        <p class="project-desc">Contributed to the team’s transition from AWS-based reporting workflows into a more scalable Snowflake-centred analytics environment, helping improve maintainability, reliability, and downstream reporting consistency.</p>
+        <div class="project-tags"><span class="project-tag">Snowflake</span><span class="project-tag">AWS</span><span class="project-tag">dbt</span><span class="project-tag">Data Modelling</span></div>
+        <div class="project-footer"><a href="https://github.com/abdullaharshad0SA" target="_blank" class="btn-gh"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>View on GitHub</a></div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">📊</div>
+        <div class="project-title">Pacing and MLOT Dashboard</div>
+        <div class="project-role">Data Architecture</div>
+        <p class="project-desc">Designed pacing and spend reporting that identified campaigns ending at 95 to 99% pacing, revealing approximately $500K in underpaced campaigns in one quarter. Collaborated with BI and Engineering to resolve inefficiencies in the bidding algorithm.</p>
+        <div class="project-tags"><span class="project-tag">Tableau</span><span class="project-tag">SQL</span><span class="project-tag">Snowflake</span></div>
+        <div class="project-footer"><a href="https://github.com/abdullaharshad0SA" target="_blank" class="btn-gh"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>View on GitHub</a></div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">📉</div>
+        <div class="project-title">Creative Fatigue Analysis</div>
+        <div class="project-role">Machine Learning</div>
+        <p class="project-desc">Built models to detect creative fatigue in digital ads by analyzing CTR decay versus benchmarks. Developed clustering models for decay classification and predictive models using Random Forest and XGBoost to forecast creative performance.</p>
+        <div class="project-tags"><span class="project-tag">Random Forest</span><span class="project-tag">XGBoost</span><span class="project-tag">Clustering</span><span class="project-tag">Python</span></div>
+        <div class="project-footer"><a href="https://github.com/abdullaharshad0SA" target="_blank" class="btn-gh"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>View on GitHub</a></div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">🔮</div>
+        <div class="project-title">Churn Prediction Model</div>
+        <div class="project-role">ML and Data Architecture</div>
+        <p class="project-desc">Designed a churn risk model combining Gong transcripts, campaign metrics, spend patterns, and vertical benchmarks to proactively flag at-risk accounts and help teams prioritize retention efforts.</p>
+        <div class="project-tags"><span class="project-tag">NLP</span><span class="project-tag">Machine Learning</span><span class="project-tag">Python</span><span class="project-tag">Snowflake</span></div>
+        <div class="project-footer"><a href="https://github.com/abdullaharshad0SA" target="_blank" class="btn-gh"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>View on GitHub</a></div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">🔒</div>
+        <div class="project-title">PII Compliance Scanner</div>
+        <div class="project-role">Privacy Automation</div>
+        <p class="project-desc">Developed an automated Python script to scan GitHub repositories for personally identifiable information, helping support GDPR and CCPA compliance more consistently.</p>
+        <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">GDPR</span><span class="project-tag">CCPA</span><span class="project-tag">GitHub</span></div>
+        <div class="project-footer"><a href="https://github.com/abdullaharshad0SA" target="_blank" class="btn-gh"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>View on GitHub</a></div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">📡</div>
+        <div class="project-title">Reach and Frequency Reporting</div>
+        <div class="project-role">Reporting Developer</div>
+        <p class="project-desc">Developed automated Reach and Frequency reporting with multi-dimensional breakdowns across geography, audience, demographics, and creative, giving advertisers a more usable view of saturation and reach efficiency.</p>
+        <div class="project-tags"><span class="project-tag">SQL</span><span class="project-tag">Python</span><span class="project-tag">Tableau</span><span class="project-tag">Automation</span></div>
+        <div class="project-footer"><a href="https://github.com/abdullaharshad0SA" target="_blank" class="btn-gh"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>View on GitHub</a></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="section-inner">
+    <p class="section-label">Learning</p>
+    <h2 class="section-title">Education</h2>
+    <div class="edu-grid">
+
+      <div class="edu-card">
+        <div class="edu-logo" style="background:#fff;width:56px;height:56px;border-radius:8px;padding:6px">
+          <img src="https://www.iit.edu/themes/iit/assets/img/illinois-tech-red.svg"
+               alt="Illinois Institute of Technology" style="width:100%;height:100%;object-fit:contain"
+               onerror="this.outerHTML='<span style=\\'color:#CC0000;font-weight:900;font-size:.55rem\\'>IIT</span>'"/>
+        </div>
+        <div>
+          <div class="edu-school">Illinois Institute of Technology</div>
+          <div class="edu-degree">M.S. Data Science</div>
+          <div class="edu-year">Anticipated 2026</div>
+        </div>
+      </div>
+
+      <div class="edu-card">
+        <div class="edu-logo" style="background:#fff;width:56px;height:56px;border-radius:8px;padding:6px">
+          <img src="https://www.torontomu.ca/etc.clientlibs/ryecms/static/clientlib-site/resources/images/tmu_logo.svg"
+               alt="Toronto Metropolitan University" style="width:100%;height:100%;object-fit:contain"
+               onerror="this.outerHTML='<span style=\\'color:#003DA5;font-weight:900;font-size:.55rem\\'>TMU</span>'"/>
+        </div>
+        <div>
+          <div class="edu-school">Toronto Metropolitan University</div>
+          <div class="edu-degree" style="font-weight:400;opacity:.9">(formerly known as Ryerson University)</div>
+          <div class="edu-degree">Certificate — Data Analytics, Big Data and Predictive Analytics</div>
+          <div class="edu-year">2019 – 2020</div>
+        </div>
+      </div>
+
+      <div class="edu-card">
+        <div class="edu-logo" style="background:#fff;width:56px;height:56px;border-radius:8px;padding:6px">
+          <img src="https://www.torontomu.ca/etc.clientlibs/ryecms/static/clientlib-site/resources/images/tmu_logo.svg"
+               alt="Toronto Metropolitan University" style="width:100%;height:100%;object-fit:contain"
+               onerror="this.outerHTML='<span style=\\'color:#003DA5;font-weight:900;font-size:.55rem\\'>TMU</span>'"/>
+        </div>
+        <div>
+          <div class="edu-school">Toronto Metropolitan University</div>
+          <div class="edu-degree" style="font-weight:400;opacity:.9">(formerly known as Ryerson University)</div>
+          <div class="edu-degree">B.A.Sc. — Electrical Engineering</div>
+          <div class="edu-year">2012 – 2017</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="certifications">
+  <div class="section-inner">
+    <p class="section-label">Credentials</p>
+    <h2 class="section-title">Certifications</h2>
+    <div class="cert-grid">
+      <a class="cert-pill" href="https://www.coursera.org/account/accomplishments/verify/IAMR01Q7W1XY" target="_blank" rel="noopener noreferrer"><span>📊</span> Foundations of Data Science — Google · Jan 2025</a>
+      <a class="cert-pill" href="https://www.coursera.org/account/accomplishments/verify/G3J4HIN06WVT" target="_blank" rel="noopener noreferrer"><span>🧠</span> Advanced Learning Algorithms — DeepLearning.AI, Stanford University · Mar 2025</a>
+      <a class="cert-pill" href="https://www.coursera.org/account/accomplishments/verify/GES3P2UVPH7H" target="_blank" rel="noopener noreferrer"><span>🤖</span> Supervised Machine Learning: Regression and Classification — DeepLearning.AI · Jan 2025</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-inner">
+      <p class="section-label" style="text-align:center">Get In Touch</p>
+      <h2 class="section-title" style="text-align:center">Contact</h2>
+      <p>Tell me about your project. Let's talk and work together!</p>
+      <div class="contact-links">
+        <a href="mailto:abdullah1818@gmail.com" class="contact-link" style="color:var(--text)">✉️ abdullah1818@gmail.com</a>
+        <a href="https://linkedin.com/in/abdullah-arshad" target="_blank" class="contact-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M20.45 20.45h-3.554v-5.57c0-1.328-.027-3.037-1.852-3.037-1.854 0-2.137 1.446-2.137 2.94v5.667H9.353V9h3.414v1.561h.048c.476-.9 1.637-1.85 3.37-1.85 3.602 0 4.267 2.37 4.267 5.455v6.284zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/abdullaharshad0SA" target="_blank" class="contact-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          GitHub
+        </a>
+      </div>
+      <div class="contact-form">
+        <p class="form-note">This form opens your email app and pre-fills a message to Abdullah.</p>
+        <form onsubmit="event.preventDefault(); const name=document.getElementById('contact-name').value.trim(); const email=document.getElementById('contact-email').value.trim(); const message=document.getElementById('contact-message').value.trim(); const subject=encodeURIComponent('Portfolio Inquiry from ' + (name || 'Website Visitor')); const body=encodeURIComponent('Name: ' + name + '\\nEmail: ' + email + '\\n\\nMessage:\\n' + message); window.location.href='mailto:abdullah1818@gmail.com?subject=' + subject + '&body=' + body;">
+          <div class="form-group"><label>Name</label><input id="contact-name" type="text" name="name" placeholder="Your name" required/></div>
+          <div class="form-group"><label>Email</label><input id="contact-email" type="email" name="email" placeholder="your@email.com" required/></div>
+          <div class="form-group"><label>Message</label><textarea id="contact-message" name="message" placeholder="Tell me about your project..." required></textarea></div>
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Send via Email</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><p>© 2026 Abdullah Arshad · Toronto, Canada</p></footer>
+
+</body>
+</html>
